@@ -1,43 +1,61 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-
 import { Context } from "../store/appContext";
-
 import "../../styles/demo.css";
 
 export const Demo = () => {
-	const { store, actions } = useContext(Context);
+  const { store, actions } = useContext(Context);
 
-	return (
-		<div className="container">
-			<ul className="list-group">
-				{store.demo.map((item, index) => {
-					return (
-						<li
-							key={index}
-							className="list-group-item d-flex justify-content-between"
-							style={{ background: item.background }}>
-							<Link to={"/single/" + index}>
-								<span>Link to: {item.title}</span>
-							</Link>
-							{// Conditional render example
-							// Check to see if the background is orange, if so, display the message
-							item.background === "orange" ? (
-								<p style={{ color: item.initial }}>
-									Check store/flux.js scroll to the actions to see the code
-								</p>
-							) : null}
-							<button className="btn btn-success" onClick={() => actions.changeColor(index, "orange")}>
-								Change Color
-							</button>
-						</li>
-					);
-				})}
-			</ul>
-			<br />
-			<Link to="/">
-				<button className="btn btn-primary">Back home</button>
-			</Link>
-		</div>
-	);
+  return (
+    < na className="container">
+      {/* Bootstrap form */}
+      < na className="mb-3">
+        <label htmlFor="exampleFormControlInput1" className="form-label">
+          name
+        </label>
+        <input
+          type="name"
+          className="form-control"
+          id="exampleFormControlInput1"
+          placeholder="name"
+        />
+        <label htmlFor="exampleFormControlInput1" className="form-label">
+          address
+        </label>
+        <input
+          type="address"
+          className="form-control"
+          id="exampleFormControlInput1"
+          placeholder="address"
+        />
+        <label htmlFor="exampleFormControlInput1" className="form-label">
+          phone
+        </label>
+        <input
+          type="phone"
+          className="form-control"
+          id="exampleFormControlInput1"
+          placeholder="phone"
+        />
+        <label htmlFor="exampleFormControlInput1" className="form-label">
+          email
+        </label>
+        <input
+          type="email"
+          className="form-control"
+          id="exampleFormControlInput1"
+          placeholder="email"
+        />
+      </ na>
+
+      {/* List group with demo items */}
+     
+
+      {/* Back home button */}
+      <br />
+      <Link to="/">
+        <button className="btn btn-primary">Back home</button>
+      </Link>
+    </ na>
+  );
 };
