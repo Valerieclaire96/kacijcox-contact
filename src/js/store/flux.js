@@ -1,5 +1,3 @@
-import { sync } from "remote-origin-url"
-
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -19,14 +17,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 			addContact: async (name, address, phone, email) => {
-				// do fetch request, add contact to store with setStore
-
 				let response = await fetch("https://playground.4geeks.com/apis/fake/contact/", {
 					method: "POST",
 					body: JSON.stringify({
 						"full_name": name,
 						"email": email,
-						"agenda_slug": "something",
+						"agenda_slug": "kaci",
 						"address": address,
 						"phone": phone,
 					}),
@@ -38,10 +34,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getContacts: async () => {
 				const store = getStore()
-				let response = await fetch("https://playground.4geeks.com/apis/fake/contact/something")
-				let data = response.json
+				let response = await fetch("https://playground.4geeks.com/apis/fake/contact/agenda/kaci")
+				let data = await response.json()
+				console.log(data)
 				setStore({
-					contact: data
+					contacts: data
 				})
 			},
 			updateContact: async (name, address, phone, email, contactID) => {
@@ -60,7 +57,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Content-Type": "application/json",
 					}
 				})
-				let data = response.json()
+				let data = await response.json()
 			},
 			deleteContact: async (contactID) => {
 				let store = getStore()
@@ -70,7 +67,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Content-Type": "application/json",
 					},
 				})
-				let data = response.json()
+				let data = await response.json()
 				setStore({
 					contacts: store.contacts.filter((contact) => contact.id !== contactID)
 				})

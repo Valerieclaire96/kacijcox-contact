@@ -31,7 +31,7 @@ const ContactCard = (props) => {
             <p>{props.email}</p>
           </div>
         </div>
-        <button class="btn btn-danger" onClick={() => actions.deleteContact(props.contactid)}>delete</button>
+        <button className="btn btn-danger" onClick={() => actions.deleteContact(props.contactid)}>delete</button>
       </div>
     </div>
   );
